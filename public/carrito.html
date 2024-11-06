@@ -1,0 +1,82 @@
+<!-- carrito.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Carrito de Compras</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Mi Carrito de Compras</h1>
+    <div id="carrito-container"></div>
+    <button onclick="finalizarCompra()">Finalizar Compra</button>
+
+    <script>
+        async function cargarCarrito() {
+            try {
+                const id_carrito = 1; // Id de ejemplo para el carrito actual
+                const response = await fetch(`/api/Carrito/${id_carrito}/detalles`);
+                const detalles = await response.json();
+                const container = document.getElementById('carrito-container');
+                container.innerHTML = '';
+
+                detalles.forEach(detalle => {
+                    const detalleDiv = document.createElement('div');
+                    detalleDiv.innerHTML = `
+                        <h3>Producto ID: ${detalle.id_producto}</h3>
+                        <p>Cantidad: ${detalle.cantidad}</p>
+                        <button onclick="eliminarDelCarrito(${detalle.id_producto})">Eliminar</button>
+                    `;
+                    container.appendChild(detalleDiv);
+                });
+            } catch (error) {
+                console.error("Error al cargar carrito:", error);
+            }
+        }
+
+        async function eliminarDelCarrito(id_producto) {
+            const id_carrito = 1;
+
+            try {
+                const response = await fetch(`/api/Carrito/${id_carrito}/productos/${id_producto}`, {
+                    method: 'DELETE'
+                });
+
+                if (response.ok) {
+                    alert('Producto eliminado del carrito');
+                    cargarCarrito();
+                } else {
+                    alert('Error al eliminar producto del carrito');
+                }
+            } catch (error) {
+                console.error("Error:", error);
+            }
+        }
+
+        async function finalizarCompra() {
+            try {
+                const response = await fetch(`/api/Ventas/finalizar`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ id_carrito: 1 }) // Suponiendo ID de carrito actual
+                });
+
+                if (response.ok) {
+                    alert('Compra finalizada');
+                    cargarCarrito(); // Limpia el carrito
+                } else {
+                    alert('Error al finalizar compra');
+                }
+            } catch (error) {
+                console.error("Error:", error);
+            }
+        }
+
+        // Cargar el carrito al cargar la página
+        window.onload = cargarCarrito;
+    </script>
+</body>
+</html>

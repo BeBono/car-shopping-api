@@ -1,0 +1,50 @@
+https://upload.wikimedia.org/wikipedia/commons/8/81/Camiseta-negra.jpg
+https://s.libertaddigital.com/2022/03/07/pantalones-de-trabajo-para-hombre-goodyear-workwear-gypnt001.jpg 
+
+
+
+### Paso 1: Insertar Datos en las Tablas
+
+#### **1. Insertar un Usuario (`users`)**
+
+```sql
+INSERT INTO users (nombres, apellidos, correo_electronico, ciudad, nombre_usuario, contrasena)
+VALUES ('Juan', 'Pérez', 'juan.perez@example.com', 'Madrid', 'juanperez', '1234');
+```
+
+#### **2. Insertar un Producto (`productos`)**
+
+```sql
+INSERT INTO productos (nombre, descripcion, precio, stock, imagen_url)
+VALUES ('Camiseta', 'Camiseta de algodón', 19.99, 50, 'http://example.com/camiseta.jpg');
+```
+
+#### **3. Insertar un Carrito (`carritos`)**
+
+Primero, obtenemos el `id_users` del usuario insertado. Supongamos que el `id_users` de "juanperez" es `1`.
+
+```sql
+INSERT INTO carritos (id_users)
+VALUES (1);
+```
+
+#### **4. Insertar Detalles del Carrito (`carrito_detalles`)**
+
+Ahora insertamos los detalles del carrito. Supongamos que el `id_carrito` es `1` y el `id_producto` del producto "Camiseta" es `1`. Insertamos 2 unidades de ese producto en el carrito:
+
+```sql
+INSERT INTO carrito_detalles (id_carrito, id_producto, cantidad)
+VALUES (1, 1, 2);  -- 2 camisetas en el carrito
+```
+
+### Paso 2: Realizar una Consulta con JOIN
+
+Ahora, podemos realizar una consulta para obtener los productos que el usuario "juanperez" tiene en su carrito, uniendo las tablas `carrito_detalles`, `carritos`, `users` y `productos`.
+
+```sql
+SELECT u.nombre_usuario, p.nombre AS producto, cd.cantidad, p.precio
+FROM carrito_detalles cd
+JOIN carritos c ON cd.id_carrito = c.id_carrito
+JOIN users u ON c.id_users = u.id_users
+JOIN productos p ON cd.id_producto = p.id_producto
+WHERE u.nombre_usuario = 'juanperez';

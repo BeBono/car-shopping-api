@@ -1,0 +1,109 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /*background-color: rgb(168, 165, 172);*/
+    font-family: 'roboto';
+    /*background: linear-gradient(to right, #b32020, #171814);*/
+    background: linear-gradient(to right, #3a3939, #fdfdfd);
+}
+
+form{
+    padding: 40px 0;
+    background: black;
+    border-radius: 10px;
+    /*box-shadow: 0 0 6px 0 rgba(255, 255, 255, 0.8);*/
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.829);
+    width: 500px;
+    height: 550px;
+}
+
+h1{
+    text-align: center;
+    font-weight: 700;
+    color: white;
+    font-weight: bold;
+}
+
+.form{
+    width: 100%;
+    margin: auto;
+}
+
+form .grupo{
+    position: relative;
+    margin: 45px;
+    display: flex;
+    justify-content: space-between;
+    color: #fff;
+}
+
+.recordar-contraseña{
+    display: flex;
+    width: 20px; 
+    white-space: nowrap;
+}
+
+.grupo label input{
+    margin-right: 5px;
+}
+
+input{
+    background: none;
+    color: #c6c6c6;
+    font-size: 18px;
+    padding: 10px 35px 10px 5px;
+    width: 100%;
+    border: none;
+    /*border-bottom: 1px solid rgb(177, 212, 245);*/
+    border-bottom: 1px solid rgb(102, 127, 241);
+}
+
+/*input:hover{
+    border: 1px solid rgb(36, 1, 161);
+    background-color: #171814;
+}*/
+
+/*label{
+    font-size: 16px;
+    position: absolute;
+    left: 5px;
+    pointer-events: none;
+}*/
+
+.form .icon{
+    position: absolute;
+    right: 8px;
+    line-height: 50px;
+    color: #fff;
+}
+
+button{
+    display: block;
+    width: 74%;
+    margin: 10px auto;
+    color: #fff;
+    height: 40px;
+    font-size: 16px;
+    cursor: pointer;
+    background: rgb(36, 1, 161);
+    /*background: linear-gradient(to right, #b32020, #181414);*/
+    border: 1px solid rgb(177, 212, 245);
+}
+
+button:hover{
+    background: rgb(12, 0, 117);
+}
+
+p{
+    text-align: center;
+    margin-top: 25px;
+    color: #fff;
+    font-weight: bold;
+}

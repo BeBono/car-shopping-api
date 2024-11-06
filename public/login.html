@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="./css/login.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+
+    <form id="loginForm" method="post">
+        <div class="form">
+            <h1>Inicia sesión</h1>
+            <div class="grupo">
+                <input placeholder="Usuario" type="text" name="" id="nombre_usuario" required><span class="icon"><ion-icon
+                        name="contact"></ion-icon></span>
+            </div>
+
+            <div class="grupo">
+                <input placeholder="Contraseña" type="password" name="" id="contrasena" required><span
+                    class="icon"><ion-icon name="lock"></ion-icon></span>
+
+            </div>
+
+            <div class="grupo">
+                <label class="recordar-contraseña"><input type="checkbox" class="check">Recordar contraseña</label>
+                <a href="#">¿Olvido la contraseña?</a>
+            </div>
+
+            <button type="submit">Inicia sesión</button>
+            <p>¿No tienes cuenta? <a href="crear_cuenta.html">Registrate</a></p>
+        </div>
+    </form>
+
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+    <script src="script2.js"></script>
+</body>
+
+</html>
